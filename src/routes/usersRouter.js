@@ -13,6 +13,7 @@ const validator = require('../middlewares/validator');
 // ************ Controller Require ************
 
 const usersController = require('../controllers/usersController');
+const seller = require('../middlewares/seller');
 
 // ************  Multer Config  ***************
 
