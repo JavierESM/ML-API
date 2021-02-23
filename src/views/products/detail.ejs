@@ -6,8 +6,22 @@
 <script>
     window.addEventListener("load", function(){
 		let form = document.getElementById("submitting-btn")
+		let deleteForm = document.getElementById("deleting-btn")
 		let idProduct = document.getElementById("hidden-id").value
 		let quantity = document.getElementById("quantity").value
+		deleteForm.addEventListener("submit", function(e){
+        e.preventDefault()
+		axios({
+			method : "DELETE",
+			url : "/api/items",
+			data : {
+				id : idProduct,
+			}
+		}).then(res=>console.log(res))
+		.catch(function (errors) {
+          console.log(errors)
+      })
+		})
         form.addEventListener("submit", function(e){
         e.preventDefault()
 		axios({
@@ -88,6 +102,9 @@
 								<p class="error"><%= typeof errors == 'undefined' ? '' : errors.quantity ? errors.quantity.msg : '' %></p>
 								<input type="hidden" name="productId" value="<%= product.id %>" id="hidden-id">
 								<button style="display: inline-block; width: 100%;" type="submit" class="mt-4 buy-now-button">AGREGAR AL CARRITO</button>
+							</form>
+							<form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex" id="deleting-btn">
+								<button type="submit" class="action-button delete">ELIMINAR DEL CARRITO</button>
 							</form>
 							<hr>
 						<% } %>

@@ -31,5 +31,12 @@ module.exports = {
           });
         }).then((item) => res.redirect("/users/cart"))
         .catch((e) => console.log(e));
+    }, 
+    deleteCart : function(req, res, next){
+        data = req.body
+       
+                Item.destroy({where : {id : data},  force: true})
+                .then(item => res.redirect("/users/cart"))
+                .catch((e) => console.log(e));
     }
 }

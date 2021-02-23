@@ -54,11 +54,11 @@ router.get('/create', authMiddleware, productsController.create); /* GET - Form 
 router.post('/', authMiddleware, upload.single('image'), validator.createProduct, productsController.store); /* POST - Store in DB - store*/
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/:id/edit', sellerMiddleware, productsController.edit); /* GET - Form to create - edit */
-router.patch('/:id', sellerMiddleware, upload.single('image'), validator.editProduct, productsController.update); /* PATCH - Update in DB - update*/
+router.get('/:id/edit', productsController.edit); /* GET - Form to create - edit */
+router.patch('/:id', upload.single('image'), validator.editProduct, productsController.update); /* PATCH - Update in DB - update*/
 
 /*** DELETE ONE PRODUCT***/ 
-router.delete('/:id', sellerMiddleware, productsController.destroy); /* DELETE - Delete from DB - destroy */
+router.delete('/:id', productsController.destroy); /* DELETE - Delete from DB - destroy */
 
 router.get('/categories/:category?', productsController.categories);
 
